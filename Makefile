@@ -2,7 +2,7 @@
 CMS_DIR := cms
 COMPOSER_FILE := $(CMS_DIR)/composer.json
 
-.PHONY: clean ddev setup launch start restart require-recipe-extra-hero-v2 enable-extra-recommended
+.PHONY: clean ddev setup launch start restart require-recipe-extra-hero-v2 enable-extra-recommended link-custom
 
 # Default target to run all steps
 all: clean ddev setup launch
@@ -11,6 +11,18 @@ all: clean ddev setup launch
 clean:
 	@echo "Cleaning the $(CMS_DIR) folder but keeping $(COMPOSER_FILE) and drupal_cms_installer..."
 	@find $(CMS_DIR) -mindepth 1 -depth -ignore_readdir_race ! -name $(notdir $(COMPOSER_FILE)) ! -path "*/web/profiles/drupal_cms_installer" -exec rm -rf {} +
+
+# Ensure the custom modules symlink exists (cms/web/modules/custom -> dev/custom).
+link-custom:
+	@mkdir -p dev/custom
+	@mkdir -p $(CMS_DIR)/web/modules
+	@if [ -L $(CMS_DIR)/web/modules/custom ] || [ ! -e $(CMS_DIR)/web/modules/custom ]; then \
+		ln -sfn ../../../dev/custom $(CMS_DIR)/web/modules/custom; \
+		echo \"Symlink created/updated: $(CMS_DIR)/web/modules/custom -> ./dev/custom\"; \
+	else \
+		echo \"$(CMS_DIR)/web/modules/custom exists and is not a symlink. Remove or move it, then re-run link-custom.\"; \
+		exit 1; \
+	fi
 
 # Start ddev and always reset the project database first
 ddev:
