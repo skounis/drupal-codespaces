@@ -2,7 +2,7 @@
 CMS_DIR := cms
 COMPOSER_FILE := $(CMS_DIR)/composer.json
 
-.PHONY: clean ddev setup launch start restart
+.PHONY: clean ddev setup launch start restart require-recipe-extra-hero-v2 enable-extra-recommended
 
 # Default target to run all steps
 all: clean ddev setup launch
@@ -48,6 +48,23 @@ setup:
 launch:
 	@echo "Launching the browser with ddev..."
 	@ddev launch
+
+
+# Require and whitelist the extra_hero_v2 recipe from More Than Themes
+require-recipe-extra-hero-v2:
+	@echo "Requiring morethanthemes/extra_hero_v2 recipe..."
+	@ddev exec "cd $(CMS_DIR) && composer require morethanthemes/extra_hero_v2:@dev"
+	@echo "Recipe required successfully!"
+
+
+# Enable the custom extra_recommended source plugin module
+enable-extra-recommended:
+	@echo "Enabling drupal_cms_extra_recommended module..."
+	@ddev exec "cd $(CMS_DIR) && ./vendor/bin/drush module:install drupal_cms_extra_recommended -y"
+	@echo "Configuring project_browser to use extra_recommended source..."
+	@ddev exec "cd $(CMS_DIR) && ./vendor/bin/drush config:set project_browser.admin_settings enabled_sources.extra_recommended '{}' -y"
+	@ddev exec "cd $(CMS_DIR) && ./vendor/bin/drush cache:rebuild"
+	@echo "Done! The 'Extra Recommended' source is now enabled in project_browser."
 
 
 # Dropping Drupal database inside ddev...
