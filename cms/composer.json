@@ -9,17 +9,18 @@
         "docs": "https://new.drupal.org/docs/drupal-cms",
         "chat": "https://drupal.org/node/314178"
     },
-    "repositories": {
-        "drupal": {
+    "repositories": [
+        {
+            "name": "drupal",
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
-    },
+    ],
     "require": {
         "composer/composer": "^2.8",
         "composer/installers": "^2.3",
         "drupal/basecore": "^1.0",
-        "drupal/core": ">=10.4",
+        "drupal/core": "^10.4 || ^11",
         "drupal/core-composer-scaffold": "^11.2.4",
         "drupal/core-project-message": "^11.2.4",
         "drupal/core-recipe-unpack": "^11.2.4",
@@ -39,9 +40,13 @@
         "drupal/drupal_cms_project": "^1.2",
         "drupal/drupal_cms_seo_tools": "^1.2",
         "drupal/drupal_cms_starter": "^1.2",
+        "drupal/fontawesome": "^3.0",
+        "drupal/paragraphs": "^1.19",
         "drupal/project_browser": "^2.1",
         "drupal/recipe_installer_kit": "^1-alpha6@alpha",
-        "drupal/webform": "@beta"
+        "drupal/webform": "@beta",
+        "drupal/extra_hero": "^1.0",
+        "drupal/extra_project_browser": "^1.0"
     },
     "require-dev": {
         "drush/drush": "^13.6.1"
@@ -49,7 +54,7 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
