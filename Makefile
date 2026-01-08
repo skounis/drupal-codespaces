@@ -8,7 +8,7 @@ EXTRA_PB_SOURCE ?= packagist
 EXTRA_PB_REPO ?= git@github.com:morethanthemes/extra_project_browser.git
 # EXTRA_RECIPES: space-separated Composer constraints for extra_* recipes, e.g.
 #   EXTRA_RECIPES="morethanthemes/extra_hero_v2:^1.0 morethanthemes/extra_foo:^1.2"
-EXTRA_RECIPES ?= morethanthemes/extra_hero_v2
+EXTRA_RECIPES ?= morethanthemes/extra_hero_v2 morethanthemes/extra_block morethanthemes/extra_content morethanthemes/extra_highlight_feature morethanthemes/extra_icon_features morethanthemes/extra_logo_links
 # EXTRA_RECIPES_SOURCE: use `packagist` (default) or `git` to pull recipe repos directly.
 EXTRA_RECIPES_SOURCE ?= packagist
 # EXTRA_RECIPES_GIT: space-separated git repo URLs for recipes when using git source.
