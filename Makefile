@@ -9,6 +9,10 @@ EXTRA_PB_REPO ?= git@github.com:morethanthemes/extra_project_browser.git
 # EXTRA_RECIPES: space-separated Composer constraints for extra_* recipes, e.g.
 #   EXTRA_RECIPES="morethanthemes/extra_hero_v2:^1.0 morethanthemes/extra_foo:^1.2"
 EXTRA_RECIPES ?= morethanthemes/extra_hero_v2
+# EXTRA_RECIPES_SOURCE: use `packagist` (default) or `git` to pull recipe repos directly.
+EXTRA_RECIPES_SOURCE ?= packagist
+# EXTRA_RECIPES_GIT: space-separated git repo URLs for recipes when using git source.
+EXTRA_RECIPES_GIT ?= https://github.com/morethanthemes/extra_hero_v2.git
 
 .PHONY: clean ddev setup launch start restart require-extra enable-extra-recommended link-custom require-recipe-extra-hero-v2
 
@@ -83,10 +87,21 @@ require-extra:
 			git -C dev/custom/extra_project_browser pull --ff-only || true; \
 		fi; \
 	fi
-	@echo "Requiring extra recipes: $(EXTRA_RECIPES)"
-	@ddev exec "cd $(CMS_DIR) && composer require $(EXTRA_RECIPES)"
-	@echo "Enabling extra_project_browser module and clearing cache..."
-	@ddev exec "cd $(CMS_DIR) && ./vendor/bin/drush en extra_project_browser -y && ./vendor/bin/drush cr"
+	@echo "Fetching extra recipes (source=$(EXTRA_RECIPES_SOURCE))..."
+	@if [ "$(EXTRA_RECIPES_SOURCE)" = "packagist" ]; then \
+		ddev exec "cd $(CMS_DIR) && composer require $(EXTRA_RECIPES)"; \
+	else \
+		for repo in $(EXTRA_RECIPES_GIT); do \
+			name=$$(basename $$repo .git); \
+			dest="$(CMS_DIR)/recipes/$$name"; \
+			if [ -d $$dest/.git ]; then \
+				git -C $$dest pull --ff-only || true; \
+			else \
+				rm -rf $$dest; \
+				git clone $$repo $$dest; \
+			fi; \
+		done; \
+	fi
 
 # Backward-compatible alias for older target name.
 require-recipe-extra-hero-v2: require-extra
