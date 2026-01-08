@@ -101,11 +101,11 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "wget https://git.drupalcode.org/project/cms/-/archive/1.2.8/cms-1.2.8.zip?ref_type=tags -O cms-1.2.8.zip",
-            "unzip -o cms-1.2.8.zip",
+            "wget https://git.drupalcode.org/project/cms/-/archive/1.2.10/cms-1.2.10.zip?ref_type=tags -O cms-1.2.10.zip",
+            "unzip -o cms-1.2.10.zip",
             "mkdir -p web/profiles",
-            "cp -r cms-1.2.8/web/profiles/drupal_cms_installer web/profiles/",
-            "rm -rf cms-1.2.8 cms-1.2.8.zip"
+            "cp -r cms-1.2.10/web/profiles/drupal_cms_installer web/profiles/",
+            "rm -rf cms-1.2.10 cms-1.2.10.zip"
         ],
         "post-update-cmd": [
             "@php -r \"@unlink('vendor/bin/composer');\""
