@@ -11,7 +11,7 @@
 	],
 	
 	// Additional image and features
-	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"image": "mcr.microsoft.com/devcontainers/universal:latest",
 	"features": {
 		"ghcr.io/ddev/ddev/install-ddev:latest": {}
 	}
