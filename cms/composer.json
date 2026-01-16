@@ -40,6 +40,8 @@
         "drupal/drupal_cms_seo_tools": "^1.2",
         "drupal/drupal_cms_starter": "^1.2",
         "drupal/extra_hero": "^1.0",
+        "drupal/extra_icon_features": "^1.0",
+        "drupal/extra_highlight_feature": "^1.0",
         "drupal/extra_project_browser": "^1.0",
         "drupal/project_browser": "^2.1",
         "drupal/recipe_installer_kit": "^1.0",
