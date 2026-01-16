@@ -78,26 +78,41 @@ make setup     # Run Composer install and post-install hooks
 make launch    # Open the Drupal CMS instance in the browser
 ```
 
-## Extra Hero Recipe (Basecore)
+## Extra Recipes (Basecore)
 
-This template includes the `extra_hero` recipe and the `extra_project_browser` module.
+Extra recipes are plug-and-play Drupal CMS add-ons that install configuration, content types, and sample content to showcase specific components and patterns. The recipes below are the same ones we ship in our [Webmaker+ distribution](https://webmaker.morethanthemes.com/), shared with the Drupal community to help teams build beautiful, high-impact pages faster.
+
+Included recipes:
+- [**Extra Hero**](https://www.drupal.org/project/extra_hero)
+- [**Extra Highlight Feature**](https://www.drupal.org/project/extra_highlight_feature)
+- [**Extra Icon Features**](https://www.drupal.org/project/extra_icon_features)
+
+This template includes the `extra_hero`, `extra_highlight_feature`, and `extra_icon_features` recipes plus the `extra_project_browser` module.
 
 After installation, enable them using Drush inside the DDEV container:
 
 ```bash
-ddev exec "cd cms && vendor/bin/drush en -y extra_project_browser extra_hero"
+ddev exec "cd cms && vendor/bin/drush en -y extra_project_browser extra_hero extra_highlight_feature extra_icon_features"
 ```
 
 Then apply the recipe:
 
 ```bash
 ddev exec "cd cms && vendor/bin/drush recipe extra_hero"
+ddev exec "cd cms && vendor/bin/drush recipe extra_highlight_feature"
+ddev exec "cd cms && vendor/bin/drush recipe extra_icon_features"
 ```
 
 You can also enable them via the admin UI:
 
 - Enable `Project Browser` and `Extra Project Browser` modules in Extend.
 - Open Project Browser and install the **Extra Hero** recipe from there.
+
+> **Stock Drupal CMS** 
+>
+> Looking for the steps to start from stock Drupal CMS and then add our extra recipes and demo themes? See `docs/stock-drupal-cms-extra-recipes.md`.
+>
+
 
 ## Requirements
 
