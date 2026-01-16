@@ -4,19 +4,9 @@ This guide starts from the official Drupal CMS install instructions and then sho
 
 ## 1) Install stock Drupal CMS (official guide)
 
-Follow the official Drupal CMS instructions at:
+Follow the official Drupal CMS instructions for installing with **DDEV** from:
 
-- https://new.drupal.org/download
-
-Choose the **Drupal CMS** tab and follow the **DDEV** path suggested there. In short:
-
-1. Install DDEV (from the official link on the download page).
-2. Create a new project directory.
-3. Run the composer command shown on the download page (`composer create-project drupal/cms`).
-4. Configure DDEV for the project (select Drupal, docroot `web`).
-5. Start DDEV and complete the Drupal CMS installer in your browser.
-
-If you are running everything inside DDEV, you can prefix Composer and Drush commands with `ddev`, for example `ddev composer ...` or `ddev exec "vendor/bin/drush ..."` below.
+https://new.drupal.org/docs/drupal-cms/get-started/install-drupal-cms/install-drupal-cms-locally-with-ddev
 
 ## 2) Require the extra recipes and demo themes
 
